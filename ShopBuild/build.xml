@@ -8,12 +8,12 @@
 	</target>
 
 	<target name="complie">
-		<ant inheritAll="false" antfile="../Shop/Base/build/build.xml" target="build" />
-		<ant inheritAll="false" antfile="../Shop/Store/build/build.xml" target="build" />
-		<!--<ant inheritAll="false" antfile="../CommonStore/build/build.xml" target="build" />
-		<ant inheritAll="false" antfile="../Genomics/build/build.xml" target="build" />		
-		<ant inheritAll="false" antfile="../Integration/LSCAWebServices/build/build.xml" target="build" />
-		<ant inheritAll="false" antfile="../LSCAStore/build/build.xml" target="build" />
+		<ant inheritAll="false" antfile="../Base/build/build.xml" target="build" />
+		<ant inheritAll="false" antfile="../Store/build/build.xml" target="build" />
+		<ant inheritAll="false" antfile="../CommonStore/build/build.xml" target="build" />
+		<ant inheritAll="false" antfile="../Integration/build/build.xml" target="build" />		
+		<ant inheritAll="false" antfile="../AdminTools/build/build.xml" target="build" />
+		<!--ant inheritAll="false" antfile="../LSCAStore/build/build.xml" target="build" />
 		<ant inheritAll="false" antfile="../BCCMerch/build/build.xml" target="build" /-->
 	</target>
 
@@ -31,10 +31,10 @@
 		<mkdir dir="${dynamo.dir}/Shop/" />
 		<mkdir dir="${dynamo.dir}/Shop/Base/" />
 		<mkdir dir="${dynamo.dir}/Shop/Store/" />
-		<!--<mkdir dir="${dynamo.dir}/Agilent/Genomics" />
-		<mkdir dir="${dynamo.dir}/Agilent/Integration" />
-		<mkdir dir="${dynamo.dir}/Agilent/Integration/EndecaSearch" />
-		<mkdir dir="${dynamo.dir}/Agilent/Integration/LSCAWebServices" />
+		<mkdir dir="${dynamo.dir}/Shop/AdminTools" />
+		<mkdir dir="${dynamo.dir}/Shop/Integration" />
+		<mkdir dir="${dynamo.dir}/Shop/CommonStore" />
+		<!--mkdir dir="${dynamo.dir}/Agilent/Integration/LSCAWebServices" />
 		<mkdir dir="${dynamo.dir}/Agilent/LSCAStore" />
 		<fileset dir="${dynamo.dir}/Agilent/BCCMerch" /-->
 	</target>
@@ -43,7 +43,7 @@
 	<target name="-Base" depends="-createdirs">
 		<echo message="Creating Base Module" />
 		<copy todir="${dynamo.dir}/Shop/Base/">
-			<fileset dir="../Shop/Base/">
+			<fileset dir="../Base/">
 				<include name="config/**" />
 				<include name="lib/**" />
 				<include name="META-INF/**" />
@@ -55,7 +55,7 @@
 		<echo message="Creating Store Module">
 		</echo>
 		<copy todir="${dynamo.dir}/Shop/Store/">
-			<fileset dir="../Shop/Store/">
+			<fileset dir="../Store/">
 				<include name="config/**" />
 				<include name="lib/**" />
 				<include name="META-INF/**" />
@@ -63,10 +63,10 @@
 			</fileset>
 		</copy>
 	</target>
-	<!--<target name="-EndecaSearch" depends="-Base">
-			<echo message="Creating EndecaSearch Module" />
-			<copy todir="${dynamo.dir}/Agilent/Integration/EndecaSearch//">
-				<fileset dir="../Integration/EndecaSearch/">
+	<target name="-Integration" depends="-Store">
+			<echo message="Creating Integration Module" />
+			<copy todir="${dynamo.dir}/Shop/Integration//">
+				<fileset dir="../Integration/">
 					<include name="config/**" />
 					<include name="lib/**" />
 					<include name="META-INF/**" />
@@ -74,10 +74,10 @@
 			</copy>
 		</target>
 
-	<target name="-CommonStore" depends="-Base,-EndecaSearch">
+	<target name="-CommonStore" depends="-Integration,-Base">
 		<echo message="Creating CommonStore Module" />
 
-		<copy todir="${dynamo.dir}/Agilent/CommonStore/">
+		<copy todir="${dynamo.dir}/Shop/CommonStore/">
 			<fileset dir="../CommonStore">
 				<include name="config/**" />
 				<include name="lib/**" />
@@ -88,10 +88,10 @@
 	</target>
 
 
-	<target name="-Genomics" depends="-CommonStore">
-		<echo message="Creating Genomics Module" />
-		<copy todir="${dynamo.dir}/Agilent/Genomics/">
-			<fileset dir="../Genomics/">
+	<target name="-AdminTools" depends="-CommonStore">
+		<echo message="Creating AdminTools Module" />
+		<copy todir="${dynamo.dir}/Shop/AdminTools/">
+			<fileset dir="../AdminTools/">
 				<include name="config/**" />
 				<include name="lib/**" />
 				<include name="META-INF/**" />
@@ -100,7 +100,7 @@
 		</copy>
 	</target>
 
-	<target name="-LSCAWebServices" depends="-Genomics">
+	<!--target name="-LSCAWebServices" depends="-Genomics">
 		<echo message="Creating LSCAWebServices Module" />
 		<copy todir="${dynamo.dir}/Agilent/Integration/LSCAWebServices/">
 			<fileset dir="../Integration/LSCAWebServices/">
@@ -140,7 +140,7 @@
 	</target>-->
 
 
-	<target name="atg_production" depends="-Store" description="runAssembler for atg_production">
+	<target name="atg_production" depends="-AdminTools" description="runAssembler for atg_production">
 		<property name="assemble.cmd.modules" value="${include.modules} DafEar.Admin " />
 		<echo message="Invoking RunAssembler Command" />
 		<echo message="assemble.cmd.modules=${assemble.cmd.modules}" />

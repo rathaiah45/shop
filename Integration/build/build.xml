@@ -1,0 +1,107 @@
+<project name="core" default="build" basedir=".">
+
+	<property file="../../Base/build/build.properties" />
+
+	<target name="local">
+		<echoproperties />
+		<property environment="env" />
+		<echo>Building Component ::: Integration </echo>
+	</target>
+
+
+
+	<target name="clean">
+
+		<echo message="Cleaning old Jar and class file" />
+
+		<delete file="../lib/classes.jar" />
+
+		<delete file="../lib/resources.jar" />
+
+		<delete dir="../classes" verbose="yes" />
+	</target>
+	<target name="jar">
+		<echo message=" Creating base.Jar in : ${basedir}/../lib" />
+		<jar jarfile="../lib/classes.jar" basedir="../classes" />
+
+		<echo message=" Creating resource.jar in : ${basedir}/../lib" />
+		<jar jarfile="../lib/resources.jar" basedir="../resources" />
+	</target>
+
+	<target name="compile.classpath">
+
+		<path id="shop.integration">
+			<fileset dir="../lib">
+				<include name="*.jar" />
+			</fileset>
+		</path>
+
+		<path id="dynamo.classpath">
+
+			<fileset dir="${dynamo.home}/../DAS/j2ee-lib">
+				<include name="**/jboss-javaee.jar" />
+			</fileset>
+			<fileset dir="${dynamo.home}/../DAS/lib">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${dynamo.home}/../DAS-UI/lib">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${dynamo.home}/../DPS/lib">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${dynamo.home}/../DSS/lib">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${dynamo.home}/../DCS/lib">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${dynamo.home}/../DAF/Search/Base/lib">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${dynamo.home}/../DAF/Search/common/lib">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${dynamo.home}/../DAF/Search/Index/lib">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${dynamo.home}/../DAF/Endeca/Index/lib">
+				<include name="**/classes.jar" />
+			</fileset>
+			<fileset dir="${dynamo.home}/../DAF/Endeca/Assembler/config">
+				<include name="**/*.jar" />
+			</fileset>
+		</path>
+
+
+		<path id="java.classpath">
+			<fileset dir="${java.home}/lib">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="${jre.home}/lib">
+				<include name="*.jar" />
+			</fileset>
+		</path>
+
+	</target>
+
+	<target name="compile" depends="compile.classpath" description="Compiles one single component">
+
+		<echo message="ClassPath for compilation" />
+		<property name="myclasspath1" refid="shop.integration" />
+		<property name="myclasspath2" refid="dynamo.classpath" />
+		<property name="myclasspath3" refid="java.classpath" />
+		<echo message="ClassPath = ${myclasspath1} ${myclasspath2} ${myclasspath3}" />
+
+		<mkdir dir="../classes" />
+		<javac srcdir="../src" destdir="../classes" fork="yes" debug="true" debuglevel="vars,lines,source" failonerror="true" memoryMaximumSize="1024m">
+			<classpath refid="shop.integration" />
+			<classpath refid="dynamo.classpath" />
+			<classpath refid="java.classpath" />
+		</javac>
+	</target>
+
+	<target name="build" depends="local,clean,compile,jar" />
+
+
+</project>
