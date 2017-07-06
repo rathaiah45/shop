@@ -1,6 +1,4 @@
 Manifest-Version: 1.0
-ATG-Config-Path: config/
-ATG-Required: DAS DPS DSS DAS
-ATG-J2EE: {ATG-J2EE}
-ATG-EAR-Module: {ATG-J2EE}
-ATG-Class-Path: bin
+ATG-Config-Path: config
+ATG-Required: DCS.Endeca.Index Shop.Base DAF.Endeca.Index DAF.Search.Index
+ATG-Class-Path: lib/classes.jar lib/resources.jar

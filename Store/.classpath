@@ -21,5 +21,6 @@
 	<classpathentry kind="lib" path="E:/ECOMMERCE/ATG/ATG11.1/DAS/lib/spring-aop-1.2-rc1.jar"/>
 	<classpathentry kind="lib" path="E:/ECOMMERCE/ATG/ATG11.1/DAS/lib/jline-0.9.94.jar"/>
 	<classpathentry kind="lib" path="E:/ECOMMERCE/ATG/ATG11.1/DAS/lib/validation-api-1.0.0.GA.jar"/>
+	<classpathentry kind="lib" path="E:/ECOMMERCE/ATG/ATG11.1/MySQL/mysql-connector-java-5.1.15-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
