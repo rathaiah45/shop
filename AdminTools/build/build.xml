@@ -71,6 +71,8 @@
 			<fileset dir="${dynamo.home}/../DAF/Endeca/Assembler/config">
 				<include name="**/*.jar" />
 			</fileset>
+			<pathelement location="${dynamo.home}/../DAF/Endeca/Index/classes" />
+
 		</path>
 
 
