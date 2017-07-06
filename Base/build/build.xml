@@ -67,6 +67,7 @@
 			<fileset dir="${dynamo.home}/../DAF/Endeca/Assembler/config">
 				<include name="**/*.jar" />
 			</fileset>
+
 		</path>
 
 

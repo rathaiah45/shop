@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-ATG-Config-Path: config/
-ATG-Required: DAS DPS DSS DCS B2BCommerce
-ATG-Class-Path: lib/classes.jar lib/resources.jar
+ATG-Config-Path: config
+ATG-Required: DCS.CustomCatalogs DPS DSS
+ATG-Class-Path: lib/classes.jar lib/resources.jar 
