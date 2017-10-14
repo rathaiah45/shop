@@ -2,22 +2,15 @@
 <project name="Shop" basedir=".">
 	<property environment="env" />
 	<property file="build.properties" />
-
 	<target name="all">
-
 	</target>
-
 	<target name="complie">
 		<ant inheritAll="false" antfile="../Base/build/build.xml" target="build" />
 		<ant inheritAll="false" antfile="../Store/build/build.xml" target="build" />
 		<ant inheritAll="false" antfile="../CommonStore/build/build.xml" target="build" />
 		<ant inheritAll="false" antfile="../Integration/build/build.xml" target="build" />		
 		<ant inheritAll="false" antfile="../AdminTools/build/build.xml" target="build" />
-		<!--ant inheritAll="false" antfile="../LSCAStore/build/build.xml" target="build" />
-		<ant inheritAll="false" antfile="../BCCMerch/build/build.xml" target="build" /-->
 	</target>
-
-
 	<target name="-delete" depends="complie">
 		<echo message="Deleting module's from the ATG HOME" />
 		<delete failonerror="false" includeEmptyDirs="true">
@@ -26,7 +19,6 @@
 			</fileset>
 		</delete>
 	</target>
-
 	<target name="-createdirs" depends="-delete">
 		<mkdir dir="${dynamo.dir}/Shop/" />
 		<mkdir dir="${dynamo.dir}/Shop/Base/" />
@@ -34,12 +26,7 @@
 		<mkdir dir="${dynamo.dir}/Shop/AdminTools" />
 		<mkdir dir="${dynamo.dir}/Shop/Integration" />
 		<mkdir dir="${dynamo.dir}/Shop/CommonStore" />
-		<!--mkdir dir="${dynamo.dir}/Agilent/Integration/LSCAWebServices" />
-		<mkdir dir="${dynamo.dir}/Agilent/LSCAStore" />
-		<fileset dir="${dynamo.dir}/Agilent/BCCMerch" /-->
 	</target>
-
-
 	<target name="-Base" depends="-createdirs">
 		<echo message="Creating Base Module" />
 		<copy todir="${dynamo.dir}/Shop/Base/">
@@ -47,7 +34,6 @@
 				<include name="config/**" />
 				<include name="lib/**" />
 				<include name="META-INF/**" />
-				<!--include name="j2ee-apps/**" /-->
 			</fileset>
 		</copy>
 	</target>
