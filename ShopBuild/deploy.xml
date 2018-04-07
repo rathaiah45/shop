@@ -8,13 +8,13 @@
 	<!-- Here you can specify Either ClusterName, IndividualServerName Like 
 		"ManagedOne" or comma Seperated List of Managed/AdminServer -->
 	<property name="deploy.name" value="atg_production" />
-	<property name="deploy.source" value="D:/directory_ear/atg_production.ear" />
+	<property name="deploy.source" value="E:/directory_ear/atg_production.ear" />
 
 	<!-- Setting TaskDefinition -->
 	<taskdef name="wldeploy" classname="weblogic.ant.taskdefs.management.WLDeploy">
 		<classpath>
 			<pathelement
-				location="E:/ATG/Oracle/Middleware/Oracle_Home/wlserver/server/lib/weblogic.jar" />
+				location="C:/Oracle/Middleware/Oracle_Home/wlserver/server/lib/weblogic.jar" />
 		</classpath>
 	</taskdef>
 
